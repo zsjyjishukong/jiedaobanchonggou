@@ -47,8 +47,8 @@ export default {
   name: 'SearchMeaus',
   data () {
     return {
-      item: '',
-      relation: '',
+      item: 'people_name',
+      relation: '=',
       detail: ''
     }
   },

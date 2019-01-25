@@ -431,7 +431,7 @@
         @size-change="pageSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[1,2,5,10,20,50,100,150,200]"
+        :page-sizes="[10,20,50,100,150,200]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next"
         :total="totalEntry">
@@ -1077,7 +1077,7 @@ export default {
         ]
       },
       pageNo: 1,
-      pageSize: 1,
+      pageSize: 10,
       currentPage: 1,
       paginationShow: false,
       totalEntry: 0,
@@ -1109,10 +1109,9 @@ export default {
       }
       if (self.datas.length === 1) {
         let k = self.datas[0]
-        if (k['field'] === '' && k['require'] === '' && k['value'] === '') {
-          self.datas = null
+        if (k['field'] === 'people_name' && k['require'] === '=' && k['value'] === '') {
         } else if (k['field'] !== '' && k['require'] !== '' && k['value'] !== '') {
-          if (k['field'] === '性别') {
+          if (k['field'] === 'sex') {
             k.value = (k.value === '男' ? 1 : 0)
           }
         } else {
@@ -1124,6 +1123,8 @@ export default {
           if (i.field === '' || i.require === '' || i.value === '') {
             this.$message.warning('请补全查询条件')
             return false
+          } else if (i.field === 'sex') {
+            i.value = (i.value === '男' ? 1 : 0)
           }
         }
       }
