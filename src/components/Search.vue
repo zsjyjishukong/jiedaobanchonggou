@@ -31,7 +31,14 @@
         :data="searchResult"
         border
         style="width: 100%"
-        v-loading="searchResultLoading">
+        v-loading="searchResultLoading"
+        @selection-change="handleSelectionChange"
+        ref="searchResult">
+        <el-table-column
+          type="selection"
+          fixed
+          width="55">
+        </el-table-column>
         <el-table-column
           fixed
           prop="peopleName"
@@ -425,6 +432,8 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-button @click="submitDelete">删除选择人口</el-button>
+      <el-button @click="resetSelection">取消所有选择</el-button>
     </div>
     <div id="pagination" v-show="paginationShow">
       <el-pagination
@@ -438,7 +447,7 @@
       </el-pagination>
       <el-dialog
         width="95%"
-        title="编辑管理员信息"
+        title="编辑人口信息"
         :visible.sync="editUserDetailShow"
         append-to-body>
         <div id="edit-user">
@@ -915,6 +924,7 @@ export default {
       domicileDetail: {},
       editUserLoading: false,
       oldDomicileCode: '',
+      multipleSelection: [],
       rules: {
         domicileCode: [
           {required: true, message: '请输入户籍码'}
@@ -1267,8 +1277,6 @@ export default {
           if (res.data.status === 0) {
             self.domicileDetailShow = true
             self.domicileDetail = res.data.data
-            console.log(res.data.data.internet)
-            console.log(self.domicileDetail.internet)
             self.oldDomicileCode = res.data.data.domicileCode
           } else if (res.data.status === 1) {
             self.$message.error(res.data.msg)
@@ -1296,6 +1304,7 @@ export default {
             self.$message.error(res.data.msg)
           } else if (res.data.status === 10) {
             self.$message.error('尚未登录，请登录后操作')
+            self.$router.push('/login')
           }
         })
         .catch(() => {
@@ -1315,6 +1324,7 @@ export default {
             self.$message.error(res.data.msg)
           } else if (res.data.status === 10) {
             self.$message.error('尚未登录，请登录后操作')
+            self.$router.push('/login')
           }
         })
         .catch(() => {
@@ -1327,6 +1337,39 @@ export default {
     },
     downloadRes: function () {
       window.open(this.host + 'downResult')
+    },
+    handleSelectionChange: function (val) {
+      let arr = []
+      for (let item of val) {
+        arr.push(item.peopleId)
+      }
+      this.multipleSelection = arr
+    },
+    resetSelection: function () {
+      this.$refs.searchResult.clearSelection()
+    },
+    submitDelete: function () {
+      let self = this
+      if (this.multipleSelection.length === 0) {
+        this.$message.warning('尚未选择删除内容')
+      } else {
+        this.$http.post(self.host + 'batchDeletePeople', self.multipleSelection)
+          .then((res) => {
+            if (res.data.status === 0) {
+              self.$message.success('删除成功')
+              self.search()
+            } else if (res.data.status === 1) {
+              self.$message.error(res.data.msg)
+            } else if (res.data.status === 10) {
+              self.$message.error('尚未登录，请登录后操作')
+              self.$router.push('/login')
+            }
+          })
+          .catch(() => {
+            self.$message.warning('网络错误')
+            self.$router.push('/login')
+          })
+      }
     }
   },
   mounted: function () {
