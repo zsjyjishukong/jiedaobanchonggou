@@ -1,22 +1,7 @@
-# jiedaobaochonggou
+# 街道办事处重构
+> 街道办事处一站式登记查询系统
 
-> wanquanqujiedaoban
+## 这是什么
+为了解决街道办事处一直以来单机操作，数据无法共享的问题，开发的一个街道办事处后台管理系统，可以实现人口以及户籍的登记，查看，删除等操作
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
+## 使用了vue框架，vue-router， axios， e-charts， ElementUI 等。
