@@ -1,5 +1,5 @@
 <template>
-  <div id="login-page">
+  <div id="login-page" @keyup.13="loginNow">
     <el-container>
       <el-header><Header></Header></el-header>
       <el-main>
