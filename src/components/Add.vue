@@ -707,7 +707,11 @@ export default {
   methods: {
     addSame: function () {
       this.peopleNum++
-      this.peoples.push(this.people)
+      let newPeople = {}
+      for (let i in this.people) {
+        newPeople[i] = this.people[i]
+      }
+      this.peoples.push(newPeople)
     },
     reduceSame: function () {
       this.peopleNum--
@@ -738,6 +742,7 @@ export default {
       } else {
         return false
       }
+      // console.log(this.peoples[0] === this.peoples[1])
     },
     validatePeople: function () {
       for (let i = 0; i < this.peopleNum; i++) {
@@ -806,7 +811,11 @@ export default {
     }
   },
   mounted: function () {
-    this.peoples.push(this.people)
+    let newPeople = {}
+    for (let i in this.people) {
+      newPeople[i] = this.people[i]
+    }
+    this.peoples.push(newPeople)
   }
 }
 </script>
