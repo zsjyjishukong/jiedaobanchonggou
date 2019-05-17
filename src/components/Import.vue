@@ -11,7 +11,7 @@
           :before-upload="beforeDomicileUpload">
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将户籍文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">只能上传户籍excel文件</div>
+          <div class="el-upload__tip" slot="tip">只能上传户籍excel文件，文件名请包含“户籍”二字</div>
         </el-upload>
       </div>
       <div style="float: left; margin: 0 50px;">
@@ -24,7 +24,7 @@
           :before-upload="beforePeopleUpload">
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将人口文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">只能上传人口excel文件</div>
+          <div class="el-upload__tip" slot="tip">只能上传人口excel文件，文件名请包含“人口”二字</div>
         </el-upload>
       </div>
     </div>

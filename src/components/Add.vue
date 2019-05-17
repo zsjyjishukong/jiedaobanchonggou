@@ -323,7 +323,7 @@
             </el-form-item>
             <el-form-item label="帮教时间：">
               <el-date-picker
-                v-model="peoples[item-1].remedyTime"
+                v-model="peoples[item-1].helpTime"
                 align="right"
                 type="date"
                 placeholder="选择日期"

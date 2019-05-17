@@ -44,7 +44,7 @@ export default {
       pass: '',
       imgMarginLeft: 1,
       allMarginLeft: 1,
-      host: 'http://175.6.73.209:8081/back/',
+      host: 'http://' + window.location.hostname + ':8081/back/',
       // host: 'http://192.168.49.147:8080/back/',
       loading: false
     }

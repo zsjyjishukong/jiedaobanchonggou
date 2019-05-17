@@ -52,7 +52,7 @@
             <Search v-if="selectShow" v-bind:host="host"></Search>
             <Count v-if="imageShow" v-bind:host="host" v-bind:areas="areas"></Count>
             <Import v-if="importShow" v-bind:host="host"></Import>
-            <Add v-if="addShow" v-bind:host="host" v-bind:toSearch="showSelect"></Add>
+            <Add v-if="addShow" v-bind:host="host" v-on:toSearch="showSelect"></Add>
             <AdminEdit v-if="adminEditShow" v-bind:host="host"></AdminEdit>
           </el-main>
         </el-container>
@@ -85,8 +85,7 @@ export default {
       exportShow: false,
       addShow: false,
       adminEditShow: false,
-      host: 'http://175.6.73.209:8081/back/',
-      // host: 'http://192.168.49.147:8080/back/',
+      host: 'http://' + window.location.hostname + ':8081/back/',
       areas: [],
       imgCountDisabled: true,
       adminEditDisabled: true
